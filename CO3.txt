@@ -21,5 +21,6 @@ while pq:
             dist[neigh] = nd
             heapq.heappush(pq, (nd, neigh))
 
-print("Shortest Distances:")
-print(dist)
+print("Shortest Distances from A:")
+for node in dist:
+    print(node, ":", dist[node])
