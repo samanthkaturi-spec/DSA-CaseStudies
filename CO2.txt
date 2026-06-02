@@ -27,9 +27,15 @@ class Graph:
                 parent[x] = y
 
         print("Minimum Spanning Tree:")
-        for edge in result:
-            print(edge)
+        total_cost = 0
 
+        for u, v, w in result:
+            print(f"{u} -- {v} = {w}")
+            total_cost += w
+
+        print("Total Cost =", total_cost)
+
+# Driver Code
 g = Graph(4)
 
 g.addEdge(0, 1, 10)
