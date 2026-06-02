@@ -25,9 +25,15 @@ def search(root, key):
 
     return search(root.right, key)
 
+# Driver Code
 root = None
 
-for i in [50, 30, 70, 20, 40]:
-    root = insert(root, i)
+for student_id in [50, 30, 70, 20, 40]:
+    root = insert(root, student_id)
 
-print("Found" if search(root, 40) else "Not Found")
+key = 40
+
+if search(root, key):
+    print("Student ID", key, "Found")
+else:
+    print("Student ID", key, "Not Found")
