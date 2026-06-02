@@ -1,26 +1,64 @@
 GPS Navigation System Using Dijkstra Algorithm
-import heapq
+import java.util.*;
 
-graph = {
-    'A': [('B', 4), ('C', 1)],
-    'B': [('D', 1)],
-    'C': [('B', 2), ('D', 5)],
-    'D': []
+class Pair {
+    String node;
+    int distance;
+
+    Pair(String node, int distance) {
+        this.node = node;
+        this.distance = distance;
+    }
 }
 
-pq = [(0, 'A')]
-dist = {'A': 0}
+public class Main {
 
-while pq:
-    d, node = heapq.heappop(pq)
+    public static void main(String[] args) {
 
-    for neigh, w in graph[node]:
-        nd = d + w
+        Map<String, List<Pair>> graph = new HashMap<>();
 
-        if neigh not in dist or nd < dist[neigh]:
-            dist[neigh] = nd
-            heapq.heappush(pq, (nd, neigh))
+        graph.put("A", Arrays.asList(
+                new Pair("B", 4),
+                new Pair("C", 1)));
 
-print("Shortest Distances from A:")
-for node in dist:
-    print(node, ":", dist[node])
+        graph.put("B", Arrays.asList(
+                new Pair("D", 1)));
+
+        graph.put("C", Arrays.asList(
+                new Pair("B", 2),
+                new Pair("D", 5)));
+
+        graph.put("D", new ArrayList<>());
+
+        PriorityQueue<Pair> pq =
+                new PriorityQueue<>(Comparator.comparingInt(a -> a.distance));
+
+        Map<String, Integer> dist = new HashMap<>();
+
+        pq.add(new Pair("A", 0));
+        dist.put("A", 0);
+
+        while (!pq.isEmpty()) {
+
+            Pair current = pq.poll();
+
+            for (Pair neighbor : graph.get(current.node)) {
+
+                int newDist = current.distance + neighbor.distance;
+
+                if (!dist.containsKey(neighbor.node)
+                        || newDist < dist.get(neighbor.node)) {
+
+                    dist.put(neighbor.node, newDist);
+                    pq.add(new Pair(neighbor.node, newDist));
+                }
+            }
+        }
+
+        System.out.println("Shortest Distances from A:");
+
+        for (String node : dist.keySet()) {
+            System.out.println(node + " : " + dist.get(node));
+        }
+    }
+}
