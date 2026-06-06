@@ -1,4 +1,4 @@
-Student Record Management System Using AVL Tree
+/*Student Record Management System Using AVL Tree*/
 class Node {
     int key;
     Node left, right;
