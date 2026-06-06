@@ -1,4 +1,4 @@
-Online Shopping Product Sorting Using Merge Sort
+/*Online Shopping Product Sorting Using Merge Sort*/
 import java.util.Arrays;
 
 public class MergeSortExample {
